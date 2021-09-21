@@ -1,0 +1,117 @@
+<section class="section">
+  <div class="container">
+    <div class="columns is-vcentered jcc">
+      <div class="column is-5">
+        <h2 class="title">Update Account Information</h2>
+
+        <div class="box">
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%= f.error_notification %>
+
+              <div class="field">
+                <div class="control">
+                  <div class="media">
+                    <figure class="media-left">
+                      <p class="image is-64x64">
+                        <% if resource.image.attached? %>
+                          <%= image_tag resource.image, class: "is-rounded" %>
+                        <% else %>
+                          <img class="is-rounded" src="https://bulma.io/images/placeholders/64x64.png">
+                        <% end %>
+                      </p>
+                    </figure>
+                    <div class="media-content">
+
+
+                      <div class="field is-grouped">
+                        <div class="control">
+                          <div class="file is-normal is-danger mt-4">
+                            <label class="file-label">
+                                <%= f.input_field :image, class: "file-input" %> 
+                                <span class="file-cta">
+                                <span class="file-label">
+                                  Upload a Picture
+                                </span>
+                              </span>
+                            </label>
+                        </div>
+                      </div>
+
+                      <div class="control">
+                        <% if resource.image.attached? %>
+                          <%= link_to 'Remove', users_edit_delete_user_image_path, class: "button is-light mt-4" %>
+                        <% end %>
+                      </div>
+                    
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <span class="hint image-hint mb-4 ">New image will appear after saving changes</span>
+
+              <div class="field">
+                <div class="control">
+                  <%= f.input :name, required: true, autofocus: true, wrapper: false, input_html: { autocomplete: "name", class: "input" }, label_html: { class: "label" } %>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                  <%= f.input :email, required: true, wrapper: false, 
+                                      input_html: { autocomplete: "email", class: "input" }, 
+                                      label_html: { class: "label" } %>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                  <%= f.input :password,
+                          hint: "leave it blank if you don't want to change it",
+                          required: false, wrapper: false, 
+                          input_html: { autocomplete: "password", class: "input" }, 
+                          label_html: { class: "label" } %>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                    <%= f.input :password_confirmation,
+                          required: false,
+                          wrapper: false, 
+                          input_html: { autocomplete: "new-password", class: "input" }, 
+                          label_html: { class: "label" } %>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                  <%= f.input :current_password,
+                          hint: "we need your current password to confirm your changes",
+                          required: true,
+                          input_html: { autocomplete: "current-password", class: "input" }, 
+                          label_html: { class: "label" }, wrapper: false %>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                  <%= f.button :submit, "Save Changes", class: "button is-medium is-danger mb-4" %>
+                </div>
+              </div>
+
+
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+              <% end %>    
+          <% end %>
+
+          <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+            
+          <%= link_to "Back", :back, class: "button is-light mt-5" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

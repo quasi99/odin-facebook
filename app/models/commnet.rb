@@ -1,0 +1,2 @@
+class Commnet < ApplicationRecord
+end
