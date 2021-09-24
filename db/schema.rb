@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_21_203400) do
+ActiveRecord::Schema.define(version: 2021_09_21_223815) do
 
-  create_table "commnets", force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
     t.text "body", null: false
     t.integer "author_id", null: false
     t.string "commentable_type", null: false
     t.integer "commentable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["author_id"], name: "index_commnets_on_author_id"
-    t.index ["commentable_type", "commentable_id"], name: "index_commnets_on_commentable"
+    t.index ["author_id"], name: "index_comments_on_author_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
   end
 
   create_table "friend_requests", force: :cascade do |t|
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2021_09_21_203400) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "commnets", "users", column: "author_id"
+  add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "friend_requests", "users", column: "recipient_id"
   add_foreign_key "friend_requests", "users", column: "requester_id"
   add_foreign_key "friendships", "users", column: "friend_a_id"

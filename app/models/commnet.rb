@@ -1,2 +1,0 @@
-class Commnet < ApplicationRecord
-end

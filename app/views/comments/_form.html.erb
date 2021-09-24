@@ -1,0 +1,14 @@
+<% nested ||= false %>
+<%= form_with(model: comment, local: true) do |form| %>
+  <div class='comment-form'>
+    <% unless comment.persisted? %>
+      <%= form.hidden_field :commentable_id, value: (nested ? comment.unnested_commentable_id : comment.commentable_id) %>
+      <%= form.hidden_field :commentable_type, value: comment.commentable_type %>
+    <% end %>
+    <%= form.text_area :body, rows: '3', placeholder: comment.get_placeholder, autofocus: autofocus %>
+    <div class="submit-wrapper">
+      <%= link_to 'Cancel', post_url(comment.get_post_or_photo_id), class: 'comment-submit comment-cancel' unless submit == 'Comment'%>
+      <%= form.submit submit, class: 'comment-submit' %>
+    </div>
+  </div>
+<% end %>
